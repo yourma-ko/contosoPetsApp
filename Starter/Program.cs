@@ -1,4 +1,6 @@
 // the ourAnimals array will store the following: 
+using System.Runtime.Serialization.Formatters;
+
 string animalSpecies = "";
 string animalID = "";
 string animalAge = "";
@@ -116,11 +118,23 @@ switch(menuSelection)
         Console.WriteLine("Press the Enter key to continue.");
         readResult = Console.ReadLine();
         break;
-        
+         
 
     case "2":
         // Add a new animal friend to the ourAnimals array
-
+        string anotherPet = "y";
+        int petCount = 0;
+        for (int i = 0; i< maxPets; i++)
+        {
+            if(ourAnimals[i, 0] != "ID #: ")
+            {
+                petCount +=1;
+            }
+        }
+        if (petCount < maxPets)
+        {
+            Console.WriteLine($"We currently have {petCount} pets that need homes. We can manage {(maxPets - petCount)} more.");
+        }
         Console.WriteLine("Press the Enter key to continue.");
         readResult = Console.ReadLine();
         break;

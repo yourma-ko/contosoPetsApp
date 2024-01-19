@@ -263,7 +263,32 @@ switch(menuSelection)
 
 
     case "3":
-        Console.WriteLine("Challenge Project - please check back soon to see progress.");
+        int petAge1;
+        bool validEntry1 = false;
+        for(int i = 0; i < maxPets; i++)
+        {
+            if(ourAnimals[i, 2]=="Age: ?"){
+                
+                do
+                {
+                    Console.WriteLine($"Enter an age for {ourAnimals[i, 0]}");
+                    readResult = Console.ReadLine();
+                    
+                    if(readResult != null)
+                    {
+                        animalAge = readResult;
+                        validEntry1 = int.TryParse(animalAge, out petAge1);
+                    }
+                    else
+                    {
+                        validEntry1 = false;
+                    }
+
+                }while(validEntry1 == false);
+                ourAnimals[i, 2] ="Age: " + animalAge;
+            }
+        }
+        Console.WriteLine("All ages seted correctly");
         Console.WriteLine("Press the Enter key to continue.");
         readResult = Console.ReadLine();
         break;

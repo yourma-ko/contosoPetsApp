@@ -263,17 +263,20 @@ switch(menuSelection)
 
 
     case "3":
+        // entering missing pets ages
         int petAge1;
         bool validEntry1 = false;
         for(int i = 0; i < maxPets; i++)
         {
+            //check if there are animals with missing age 
             if(ourAnimals[i, 2]=="Age: ?"){
                 
                 do
                 {
+                    //reading age value from console 
                     Console.WriteLine($"Enter an age for {ourAnimals[i, 0]}");
                     readResult = Console.ReadLine();
-                    
+                    //check if the input result not null and int type
                     if(readResult != null)
                     {
                         animalAge = readResult;
@@ -285,16 +288,72 @@ switch(menuSelection)
                     }
 
                 }while(validEntry1 == false);
+                //changing age field from ? to inputed result
                 ourAnimals[i, 2] ="Age: " + animalAge;
             }
         }
-        Console.WriteLine("All ages seted correctly");
+        
+        for(int i = 0; i < maxPets; i++)
+        {
+            //looking for a missing pet physical description
+            if(ourAnimals[i, 4] == "Physical description: " && ourAnimals[i, 0] != "ID #: ")
+            {
+                do
+                {
+                    Console.WriteLine($"Enter a physical description of the pet (size, color, gender, weight, housebroken) for {ourAnimals[i,0]} ");
+                    readResult = Console.ReadLine();
+                    if(readResult != null)
+                    {
+                        animalPhysicalDescription = readResult;
+                        
+                    }
+                }while(animalPhysicalDescription == "");
+                ourAnimals[i, 4] = "Physical description: " + animalPhysicalDescription;
+            }
+        }
+        Console.WriteLine("All ages and physical discriptions seted correctly");
         Console.WriteLine("Press the Enter key to continue.");
         readResult = Console.ReadLine();
         break;
 
     case "4":
-        Console.WriteLine("Challenge Project - please check back soon to see progress.");
+        for(int i = 0; i < maxPets; i++)
+        {
+            //looking for a missing pet nickname
+            if(ourAnimals[i, 3] == "Nickname: " && ourAnimals[i, 0] != "ID #: ")
+            {
+                do
+                {
+                    Console.WriteLine($"Enter a nickname for {ourAnimals[i,0]} ");
+                    readResult = Console.ReadLine();
+                    if(readResult != null)
+                    {
+                        animalNickname = readResult;
+                        
+                    }
+                }while(animalNickname == "");
+                ourAnimals[i, 3] = "Nickname: " + animalNickname;
+            }
+        }
+        for(int i = 0; i < maxPets; i++)
+        {
+            //looking for animal missing personality discription
+            if(ourAnimals[i, 5] == "Personality: " && ourAnimals[i, 0] != "ID #: ")
+            {
+                do
+                {
+                    Console.WriteLine($"Enter a description of the pet's personality (likes or dislikes, tricks, energy level) for {ourAnimals[i,0]} ");
+                    readResult = Console.ReadLine();
+                    if(readResult != null)
+                    {
+                        animalPersonalityDescription = readResult;
+                        
+                    }
+                }while(animalPersonalityDescription == "");
+                ourAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
+            }
+        }
+        Console.WriteLine("all personality discriptions and nicknames seted correctly");
         Console.WriteLine("Press the Enter key to continue.");
         readResult = Console.ReadLine();
         break;
